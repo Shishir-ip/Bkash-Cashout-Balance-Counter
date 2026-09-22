@@ -251,18 +251,18 @@
 
         .currency-symbol {
             position: absolute;
-            left: 16px;
+            left: 12px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             color: var(--primary);
         }
 
         .amount-input {
             width: 100%;
-            padding: 18px 16px 18px 44px;
-            font-size: 24px;
+            padding: 16px 12px 16px 38px;
+            font-size: 22px;
             font-weight: 700;
             border: 2px solid var(--border);
             border-radius: var(--radius-sm);
@@ -311,6 +311,7 @@
             -webkit-appearance: none;
             appearance: none;
             color: inherit;
+            min-height: 80px;
         }
 
         /* Selected state - MUST override default */
@@ -338,7 +339,7 @@
         }
 
         .rate-label {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-secondary);
             font-weight: 600;
             transition: color 0.3s ease;
@@ -346,6 +347,7 @@
 
         /* Custom toggle - same styling logic */
         .custom-rate-toggle {
+            grid-column: 1 / -1;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -508,7 +510,7 @@
         }
 
         .breakdown-label {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--text-secondary);
             font-weight: 500;
             display: flex;
@@ -585,7 +587,7 @@
 
         /* Footer - Mini at bottom */
         .footer {
-            padding: 16px 24px 24px;
+            padding: 24px 24px 24px;
             text-align: center;
             background: var(--surface);
             border-top: 1px solid var(--border);
@@ -594,9 +596,9 @@
         }
 
         .developer {
-            font-size: 11px;
+            font-size: 12px;
             color: var(--text-secondary);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             opacity: 0.8;
         }
 
@@ -607,7 +609,7 @@
             color: var(--facebook-blue);
             text-decoration: none;
             font-weight: 600;
-            font-size: 11px;
+            font-size: 12px;
             padding: 4px 8px;
             border-radius: 12px;
             background: rgba(24, 119, 242, 0.1);
