@@ -1091,14 +1091,10 @@
             const rate = balanceSelectedRate;
 
             // Calculate: charge = (balance / 1000) * rate
-            // But this is circular, so we use: charge = (amount * rate) / (1000 + rate) for exact
-            // Actually for balance calculator: if you have X balance, you can withdraw Y where Y + charge = X
-            // charge = (Y / 1000) * rate
-            // X = Y + (Y * rate / 1000) = Y * (1 + rate/1000) = Y * (1000 + rate) / 1000
-            // Y = X * 1000 / (1000 + rate)
+            // Received amount = balance - charge
             
-            const finalAmount = (balance * 1000) / (1000 + rate);
-            const chargeAmount = balance - finalAmount;
+            const chargeAmount = (balance / 1000) * rate;
+            const finalAmount = balance - chargeAmount;
 
             // Display results
             document.getElementById('balance-final-amount').textContent = formatNumber(finalAmount);
