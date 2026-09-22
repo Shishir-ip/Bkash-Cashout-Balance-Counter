@@ -72,21 +72,20 @@
 
         html {
             height: 100%;
-            overflow: hidden;
+            overflow-y: auto;
         }
 
         body {
-            height: 100%;
+            min-height: 100%;
             background: var(--bg);
             color: var(--text-primary);
-            overflow: hidden;
-            position: fixed;
+            overflow-y: auto;
             width: 100%;
             transition: background 0.3s ease, color 0.3s ease;
         }
 
         .app-container {
-            height: 100%;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             max-width: 480px;
@@ -583,20 +582,16 @@
             color: var(--text-primary);
         }
 
-        /* Scrollable spacer to push footer down */
-        .scroll-spacer {
-            height: 20px;
-            flex-shrink: 0;
-        }
-
-        /* Footer - Mini at bottom */
+        /* Footer - Fixed at bottom */
         .footer {
-            padding: 16px 20px 20px;
+            padding: 20px;
             text-align: center;
             background: var(--surface);
             border-top: 1px solid var(--border);
-            flex-shrink: 0;
             margin-top: auto;
+            position: sticky;
+            bottom: 0;
+            width: 100%;
         }
 
         .developer {
@@ -930,8 +925,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="scroll-spacer"></div>
         </main>
 
         <!-- Footer -->
