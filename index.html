@@ -737,36 +737,27 @@
                             <span>⚡</span> Select Charge Rate
                         </label>
                         <div class="rate-section">
-                            <div class="rate-grid">
-                                <button type="button" class="rate-btn" onclick="selectBalanceRate(14.90, 'priyo', this)">
-                                    <span class="rate-amount">14.90৳</span>
+                            <div class="rate-grid" id="balance-rate-grid">
+                                <button type="button" class="rate-btn" onclick="selectBalanceRate(13.95, 'priyo', this)">
+                                    <span class="rate-amount">13.95৳</span>
                                     <span class="rate-label">Priyo/ATM</span>
                                 </button>
                                 <button type="button" class="rate-btn" onclick="selectBalanceRate(18.50, 'regular', this)">
                                     <span class="rate-amount">18.50৳</span>
                                     <span class="rate-label">Regular</span>
                                 </button>
-                                <button type="button" class="rate-btn" onclick="selectBalanceRate(15, 'special', this)">
+                                <button type="button" class="rate-btn" onclick="selectBalanceRate(12.99, 'nagad-regular', this)">
+                                    <span class="rate-amount">12.99৳</span>
+                                    <span class="rate-label">Nagad Regular</span>
+                                </button>
+                                <button type="button" class="rate-btn" onclick="selectBalanceRate(15, 'nagad-islamic', this)">
                                     <span class="rate-amount">15৳</span>
-                                    <span class="rate-label">Special</span>
-                                </button>
-                                <button type="button" class="rate-btn" id="balance-custom-btn" onclick="toggleBalanceCustomRate()">
-                                    <span class="rate-amount">Custom</span>
-                                    <span class="rate-label">Set your own</span>
+                                    <span class="rate-label">Nagad Islamic</span>
                                 </button>
                             </div>
-                            <div class="custom-rate-input" id="balance-custom-rate-input">
-                                <div class="custom-input-wrapper">
-                                    <input 
-                                        type="number" 
-                                        class="custom-input" 
-                                        id="balance-custom-rate" 
-                                        placeholder="Enter rate per 1000"
-                                        inputmode="decimal"
-                                    >
-                                    <span style="font-weight: 700; color: var(--text-primary);">৳</span>
-                                </div>
-                            </div>
+                            <button type="button" class="custom-rate-toggle" onclick="openAddRateModal('balance')">
+                                <span>➕</span> Add Rate
+                            </button>
                         </div>
                     </div>
 
@@ -795,7 +786,7 @@
                             <span class="breakdown-label">
                                 <span>📊</span> Charge Rate
                             </span>
-                            <span class="rate-badge" id="balance-rate-badge">14.90৳/1000</span>
+                            <span class="rate-badge" id="balance-rate-badge">13.95৳/1000</span>
                         </div>
                         <div class="breakdown-row">
                             <span class="breakdown-label">
@@ -817,7 +808,7 @@
                     <div class="info-card">
                         <div class="info-icon">🏧</div>
                         <div class="info-title">ATM Cash Out</div>
-                        <div class="info-value">14.90৳/1000</div>
+                        <div class="info-value">13.95৳/1000</div>
                     </div>
                     <div class="info-card">
                         <div class="info-icon">🏪</div>
@@ -853,36 +844,27 @@
                             <span>⚡</span> Select Charge Rate
                         </label>
                         <div class="rate-section">
-                            <div class="rate-grid">
-                                <button type="button" class="rate-btn" onclick="selectChargeRate(14.90, 'priyo', this)">
-                                    <span class="rate-amount">14.90৳</span>
+                            <div class="rate-grid" id="charge-rate-grid">
+                                <button type="button" class="rate-btn" onclick="selectChargeRate(13.95, 'priyo', this)">
+                                    <span class="rate-amount">13.95৳</span>
                                     <span class="rate-label">Priyo/ATM</span>
                                 </button>
                                 <button type="button" class="rate-btn" onclick="selectChargeRate(18.50, 'regular', this)">
                                     <span class="rate-amount">18.50৳</span>
                                     <span class="rate-label">Regular</span>
                                 </button>
-                                <button type="button" class="rate-btn" onclick="selectChargeRate(15, 'special', this)">
+                                <button type="button" class="rate-btn" onclick="selectChargeRate(12.99, 'nagad-regular', this)">
+                                    <span class="rate-amount">12.99৳</span>
+                                    <span class="rate-label">Nagad Regular</span>
+                                </button>
+                                <button type="button" class="rate-btn" onclick="selectChargeRate(15, 'nagad-islamic', this)">
                                     <span class="rate-amount">15৳</span>
-                                    <span class="rate-label">Special</span>
-                                </button>
-                                <button type="button" class="rate-btn" id="charge-custom-btn" onclick="toggleChargeCustomRate()">
-                                    <span class="rate-amount">Custom</span>
-                                    <span class="rate-label">Set your own</span>
+                                    <span class="rate-label">Nagad Islamic</span>
                                 </button>
                             </div>
-                            <div class="custom-rate-input" id="charge-custom-rate-input">
-                                <div class="custom-input-wrapper">
-                                    <input 
-                                        type="number" 
-                                        class="custom-input" 
-                                        id="charge-custom-rate" 
-                                        placeholder="Enter rate per 1000"
-                                        inputmode="decimal"
-                                    >
-                                    <span style="font-weight: 700; color: var(--text-primary);">৳</span>
-                                </div>
-                            </div>
+                            <button type="button" class="custom-rate-toggle" onclick="openAddRateModal('charge')">
+                                <span>➕</span> Add Rate
+                            </button>
                         </div>
                     </div>
 
@@ -911,7 +893,7 @@
                             <span class="breakdown-label">
                                 <span>📊</span> Charge Rate
                             </span>
-                            <span class="rate-badge" id="charge-rate-badge">14.90৳/1000</span>
+                            <span class="rate-badge" id="charge-rate-badge">13.95৳/1000</span>
                         </div>
                         <div class="breakdown-row">
                             <span class="breakdown-label">
@@ -933,7 +915,7 @@
                     <div class="info-card">
                         <div class="info-icon">🏧</div>
                         <div class="info-title">ATM Cash Out</div>
-                        <div class="info-value">14.90৳/1000</div>
+                        <div class="info-value">13.95৳/1000</div>
                     </div>
                     <div class="info-card">
                         <div class="info-icon">🏪</div>
@@ -1003,43 +985,92 @@
 
         // Balance Calculator Logic
         let balanceSelectedRate = null;
-        let balanceCustomRateActive = false;
         let balanceSelectedBtn = null;
 
         function selectBalanceRate(rate, type, btnElement) {
             balanceSelectedRate = rate;
-            balanceCustomRateActive = false;
             balanceSelectedBtn = btnElement;
             
             // Remove active from all rate buttons in balance page
             const allBtns = document.querySelectorAll('#page-balance .rate-btn');
             allBtns.forEach(btn => btn.classList.remove('active'));
             
-            // Hide custom input
-            document.getElementById('balance-custom-rate-input').classList.remove('show');
-            
             // Add active to clicked button
             btnElement.classList.add('active');
         }
 
-        function toggleBalanceCustomRate() {
-            balanceCustomRateActive = !balanceCustomRateActive;
+        function loadCustomRates(page) {
+            const storageKey = `cashout_custom_rates_${page}`;
+            const saved = localStorage.getItem(storageKey);
+            return saved ? JSON.parse(saved) : [];
+        }
+
+        function saveCustomRates(page, rates) {
+            const storageKey = `cashout_custom_rates_${page}`;
+            localStorage.setItem(storageKey, JSON.stringify(rates));
+        }
+
+        function openAddRateModal(page) {
+            const name = prompt('Enter rate name (e.g., My Custom Rate):');
+            if (!name || name.trim() === '') return;
             
-            if (balanceCustomRateActive) {
-                balanceSelectedRate = null;
-                balanceSelectedBtn = null;
-                
-                // Remove active from all rate buttons
-                const allBtns = document.querySelectorAll('#page-balance .rate-btn');
-                allBtns.forEach(btn => btn.classList.remove('active'));
-                
-                // Add active to custom button
-                document.getElementById('balance-custom-btn').classList.add('active');
-                document.getElementById('balance-custom-rate-input').classList.add('show');
-            } else {
-                document.getElementById('balance-custom-btn').classList.remove('active');
-                document.getElementById('balance-custom-rate-input').classList.remove('show');
+            const rateStr = prompt('Enter rate per 1000 (e.g., 13.95):');
+            if (!rateStr) return;
+            
+            const rate = parseFloat(rateStr);
+            if (isNaN(rate) || rate < 0) {
+                showToast('Please enter a valid rate');
+                return;
             }
+            
+            const customRates = loadCustomRates(page);
+            const newRate = {
+                id: Date.now(),
+                name: name.trim(),
+                rate: rate
+            };
+            customRates.push(newRate);
+            saveCustomRates(page, customRates);
+            
+            renderCustomRates(page);
+            showToast('Rate added successfully!');
+        }
+
+        function renderCustomRates(page) {
+            const customRates = loadCustomRates(page);
+            const gridId = `${page}-rate-grid`;
+            const grid = document.getElementById(gridId);
+            if (!grid) return;
+            
+            // Remove existing custom rate buttons (not default ones)
+            const existingCustom = grid.querySelectorAll('.custom-rate-btn');
+            existingCustom.forEach(btn => btn.remove());
+            
+            // Add custom rate buttons
+            customRates.forEach(customRate => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'rate-btn custom-rate-btn';
+                btn.onclick = function() {
+                    if (page === 'balance') {
+                        selectBalanceRate(customRate.rate, customRate.id, this);
+                    } else {
+                        selectChargeRate(customRate.rate, customRate.id, this);
+                    }
+                };
+                btn.innerHTML = `
+                    <span class="rate-amount">${customRate.rate}৳</span>
+                    <span class="rate-label">${customRate.name}</span>
+                `;
+                grid.appendChild(btn);
+            });
+        }
+
+        function removeCustomRate(page, id) {
+            const customRates = loadCustomRates(page);
+            const filtered = customRates.filter(r => r.id !== id);
+            saveCustomRates(page, filtered);
+            renderCustomRates(page);
         }
 
         function calculateBalance() {
@@ -1052,20 +1083,12 @@
                 return;
             }
 
-            let rate;
-            if (balanceCustomRateActive) {
-                const customRate = parseFloat(document.getElementById('balance-custom-rate').value);
-                if (!customRate || customRate < 0) {
-                    showToast('Please enter a valid custom rate');
-                    return;
-                }
-                rate = customRate;
-            } else if (balanceSelectedRate) {
-                rate = balanceSelectedRate;
-            } else {
+            if (!balanceSelectedRate) {
                 showToast('Please select a charge rate');
                 return;
             }
+
+            const rate = balanceSelectedRate;
 
             // Calculate: charge = (balance / 1000) * rate
             // But this is circular, so we use: charge = (amount * rate) / (1000 + rate) for exact
@@ -1085,7 +1108,7 @@
             
             const badge = document.getElementById('balance-rate-badge');
             badge.textContent = rate + '৳/1000';
-            badge.className = balanceCustomRateActive ? 'rate-badge custom' : 'rate-badge';
+            badge.className = 'rate-badge';
             
             document.getElementById('balance-result').classList.add('show');
             
@@ -1097,43 +1120,18 @@
 
         // Charge Calculator Logic
         let chargeSelectedRate = null;
-        let chargeCustomRateActive = false;
         let chargeSelectedBtn = null;
 
         function selectChargeRate(rate, type, btnElement) {
             chargeSelectedRate = rate;
-            chargeCustomRateActive = false;
             chargeSelectedBtn = btnElement;
             
             // Remove active from all rate buttons in charge page
             const allBtns = document.querySelectorAll('#page-charge .rate-btn');
             allBtns.forEach(btn => btn.classList.remove('active'));
             
-            // Hide custom input
-            document.getElementById('charge-custom-rate-input').classList.remove('show');
-            
             // Add active to clicked button
             btnElement.classList.add('active');
-        }
-
-        function toggleChargeCustomRate() {
-            chargeCustomRateActive = !chargeCustomRateActive;
-            
-            if (chargeCustomRateActive) {
-                chargeSelectedRate = null;
-                chargeSelectedBtn = null;
-                
-                // Remove active from all rate buttons
-                const allBtns = document.querySelectorAll('#page-charge .rate-btn');
-                allBtns.forEach(btn => btn.classList.remove('active'));
-                
-                // Add active to custom button
-                document.getElementById('charge-custom-btn').classList.add('active');
-                document.getElementById('charge-custom-rate-input').classList.add('show');
-            } else {
-                document.getElementById('charge-custom-btn').classList.remove('active');
-                document.getElementById('charge-custom-rate-input').classList.remove('show');
-            }
         }
 
         function calculateCharge() {
@@ -1146,20 +1144,12 @@
                 return;
             }
 
-            let rate;
-            if (chargeCustomRateActive) {
-                const customRate = parseFloat(document.getElementById('charge-custom-rate').value);
-                if (!customRate || customRate < 0) {
-                    showToast('Please enter a valid custom rate');
-                    return;
-                }
-                rate = customRate;
-            } else if (chargeSelectedRate) {
-                rate = chargeSelectedRate;
-            } else {
+            if (!chargeSelectedRate) {
                 showToast('Please select a charge rate');
                 return;
             }
+
+            const rate = chargeSelectedRate;
 
             // Calculate: charge = (amount / 1000) * rate
             // total = amount + charge
@@ -1174,7 +1164,7 @@
             
             const badge = document.getElementById('charge-rate-badge');
             badge.textContent = rate + '৳/1000';
-            badge.className = chargeCustomRateActive ? 'rate-badge custom' : 'rate-badge';
+            badge.className = 'rate-badge';
             
             document.getElementById('charge-result').classList.add('show');
             
@@ -1200,18 +1190,16 @@
 
         // Initialize
         initTheme();
+        
+        // Load custom rates on page load
+        renderCustomRates('balance');
+        renderCustomRates('charge');
 
         // Enter key support
         document.getElementById('balance-input').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') calculateBalance();
         });
-        document.getElementById('balance-custom-rate').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') calculateBalance();
-        });
         document.getElementById('charge-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') calculateCharge();
-        });
-        document.getElementById('charge-custom-rate').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') calculateCharge();
         });
     </script>
