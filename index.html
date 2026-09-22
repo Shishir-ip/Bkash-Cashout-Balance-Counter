@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#D12053">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Cashout Counter">
+    <meta name="description" content="Calculate bKash cash out amounts with charges - Professional calculator for Bangladesh">
+    <title>Cashout Counter</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQ2FzaG91dCBDb3VudGVyIiwic2hvcnRfbmFtZSI6IkNhc2hvdXQiLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiI0QxMjA1MyIsInRoZW1lX2NvbG9yIjoiI0QxMjA1MyIsImljb25zIjpbeyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5alpYSjBMWFpsY25OcGIyNGlJSGRwWkhSb1BTSXlOVEFpSUdobGFXZG9kRDBpTWpVd0lpQjJhV1YzUW05NFBTSXdJajQ4YzNabklIZHBaSFJvUFNJeU5UQWlJR2hsYVdkb2REMGliVzlpWjJVPklqNDhkSE53SUdadmJuUTlJbU52YlhCc1pYTWlJR2x1Wm05eWJXRjBhR2x1WjBOdmJuUmxiblJwZEhrOUlpSWdlRzFzYm5NNmVHMXNibk05SW1oMGRIQTZMeTkzZDNjdWQzTXViM0puTHpJd01EQXZaR1ZzWVhrdlJHRnVaR1Z5Y3k5bWFXeGxMMkZ3Y0d4cFkyRmliR3h6TDJsdVpHVjRMWFZ6WlhJdFlYQndZV05sYkhNdGJXRjBhWFJoY21sdVl5MXdZWEJ6YVdOaGJHRnlaQzF3Y21GamRHbGhiUzF6YjJaMGQyRnlaWE11WTI5dElqNEtQQzl6ZG1jKyIsInNpemUiOiIxOTJ4MTkyIiwidHlwZSI6ImltYWdlL3N2Zyt4bWwifV19">
+    
+    <style>
+        :root {
+            --primary: #D12053;
+            --primary-dark: #b01a45;
+            --primary-light: #ff1a6b;
+            --white: #ffffff;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-400: #ced4da;
+            --gray-500: #adb5bd;
+            --gray-600: #6c757d;
+            --gray-700: #495057;
+            --gray-800: #343a40;
+            --gray-900: #212529;
+            --success: #28a745;
+            --warning: #ffc107;
+            --facebook-blue: #1877F2;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+            --radius: 16px;
+            --radius-sm: 12px;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f0f0f;
+            --surface: #1a1a1a;
+            --surface-elevated: #242424;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --border: #333333;
+            --input-bg: #2a2a2a;
+        }
+
+        [data-theme="light"] {
+            --bg: #f5f5f5;
+            --surface: #ffffff;
+            --surface-elevated: #ffffff;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --border: #e0e0e0;
+            --input-bg: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        html {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            height: 100%;
+            background: var(--bg);
+            color: var(--text-primary);
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .app-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--bg);
+            position: relative;
+        }
+
+        /* Header */
+        .header {
+            background: var(--primary);
+            padding: 20px 24px;
+            color: white;
+            position: relative;
+            z-index: 10;
+            box-shadow: var(--shadow-md);
+            flex-shrink: 0;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .app-title {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .app-icon {
+            width: 36px;
+            height: 36px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .theme-toggle {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+            background: rgba(255,255,255,0.3);
+        }
+
+        .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        /* Page Toggle */
+        .page-toggle {
+            display: flex;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50px;
+            padding: 4px;
+            margin-top: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .page-toggle-btn {
+            flex: 1;
+            padding: 10px 16px;
+            border: none;
+            background: transparent;
+            color: rgba(255,255,255,0.8);
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .page-toggle-btn.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .main-content::-webkit-scrollbar {
+            width: 0;
+        }
+
+        /* Page Sections */
+        .page-section {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .page-section.active {
+            display: flex;
+        }
+
+        /* Input Section */
+        .input-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .input-group {
+            margin-bottom: 24px;
+        }
+
+        .input-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .currency-symbol {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .amount-input {
+            width: 100%;
+            padding: 18px 16px 18px 44px;
+            font-size: 24px;
+            font-weight: 700;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: var(--input-bg);
+            color: var(--text-primary);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .amount-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(209, 32, 83, 0.1);
+        }
+
+        .amount-input::placeholder {
+            color: var(--gray-400);
+            font-weight: 500;
+        }
+
+        /* Rate Selection */
+        .rate-section {
+            margin-top: 8px;
+        }
+
+        .rate-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        /* Default state - not selected */
+        button.rate-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 16px;
+            background: var(--input-bg) !important;
+            border: 2px dashed var(--border) !important;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            -webkit-appearance: none;
+            appearance: none;
+            color: inherit;
+        }
+
+        /* Selected state - MUST override default */
+        button.rate-btn.active {
+            background: var(--primary) !important;
+            border: 2px solid var(--primary) !important;
+            color: white !important;
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(209, 32, 83, 0.4);
+        }
+
+        button.rate-btn.active .rate-amount {
+            color: white !important;
+        }
+
+        button.rate-btn.active .rate-label {
+            color: rgba(255,255,255,0.9) !important;
+        }
+
+        .rate-amount {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .rate-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        /* Custom toggle - same styling logic */
+        .custom-rate-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px;
+            background: var(--input-bg);
+            border: 2px dashed var(--border);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .custom-rate-toggle.active {
+            background: var(--primary);
+            border: 2px solid var(--primary);
+            color: white;
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(209, 32, 83, 0.4);
+        }
+
+        .custom-rate-input {
+            display: none;
+            margin-top: 12px;
+            animation: slideDown 0.3s ease;
+        }
+
+        .custom-rate-input.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .custom-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .custom-input {
+            flex: 1;
+            padding: 14px 16px;
+            font-size: 20px;
+            font-weight: 700;
+            border: 3px solid var(--primary);
+            border-radius: var(--radius-sm);
+            background: var(--input-bg);
+            color: var(--text-primary);
+            outline: none;
+        }
+
+        .custom-input:focus {
+            box-shadow: 0 0 0 4px rgba(209, 32, 83, 0.1);
+        }
+
+        /* Calculate Button */
+        .calculate-btn {
+            width: 100%;
+            padding: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(209, 32, 83, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 8px;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .calculate-btn:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 8px rgba(209, 32, 83, 0.3);
+        }
+
+        .calculate-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Result Section */
+        .result-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--primary);
+            display: none;
+            animation: slideUp 0.4s ease;
+            flex-shrink: 0;
+        }
+
+        .result-card.show {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 2px dashed var(--border);
+        }
+
+        .result-title {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .result-amount {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .result-currency {
+            font-size: 20px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .breakdown {
+            display: grid;
+            gap: 12px;
+        }
+
+        .breakdown-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .breakdown-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .breakdown-label {
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .breakdown-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .breakdown-value.highlight {
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        .rate-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(209, 32, 83, 0.1);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .rate-badge.custom {
+            background: rgba(40, 167, 69, 0.1);
+            color: var(--success);
+        }
+
+        /* Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 8px;
+            flex-shrink: 0;
+        }
+
+        .info-card {
+            background: var(--surface);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .info-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .info-title {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Scrollable spacer to push footer down */
+        .scroll-spacer {
+            height: 40px;
+            flex-shrink: 0;
+        }
+
+        /* Footer - Mini at bottom */
+        .footer {
+            padding: 16px 24px 24px;
+            text-align: center;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            flex-shrink: 0;
+            margin-top: auto;
+        }
+
+        .developer {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.8;
+        }
+
+        .facebook-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--facebook-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            background: rgba(24, 119, 242, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .facebook-link:active {
+            transform: scale(0.95);
+            background: rgba(24, 119, 242, 0.2);
+        }
+
+        .facebook-icon {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--gray-800);
+            color: white;
+            padding: 14px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 380px) {
+            .app-title {
+                font-size: 24px;
+            }
+            .result-amount {
+                font-size: 36px;
+            }
+            .rate-amount {
+                font-size: 18px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Pulse animation for result */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-top">
+                <div class="app-title">
+                    <div class="app-icon">৳</div>
+                    Cashout Counter
+                </div>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <span id="theme-icon">🌙</span>
+                </button>
+            </div>
+            <div class="subtitle">Calculate bKash Cash Out with Charges</div>
+            
+            <!-- Page Toggle -->
+            <div class="page-toggle">
+                <button class="page-toggle-btn active" id="btn-balance" onclick="switchPage('balance')">Balance Calculator</button>
+                <button class="page-toggle-btn" id="btn-charge" onclick="switchPage('charge')">Charge Calculator</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Balance Calculator Page -->
+            <div class="page-section active" id="page-balance">
+                <!-- Input Card -->
+                <div class="input-card">
+                    <div class="input-group">
+                        <label class="input-label">
+                            <span>💰</span> Your Balance
+                        </label>
+                        <div class="input-wrapper">
+                            <span class="currency-symbol">৳</span>
+                            <input 
+                                type="number" 
+                                class="amount-input" 
+                                id="balance-input" 
+                                placeholder="Enter amount"
+                                inputmode="numeric"
+                                pattern="[0-9]*"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">
+                            <span>⚡</span> Select Charge Rate
+                        </label>
+                        <div class="rate-section">
+                            <div class="rate-grid">
+                                <button type="button" class="rate-btn" onclick="selectBalanceRate(14.90, 'priyo', this)">
+                                    <span class="rate-amount">14.90৳</span>
+                                    <span class="rate-label">Priyo/ATM</span>
+                                </button>
+                                <button type="button" class="rate-btn" onclick="selectBalanceRate(18.50, 'regular', this)">
+                                    <span class="rate-amount">18.50৳</span>
+                                    <span class="rate-label">Regular</span>
+                                </button>
+                                <button type="button" class="rate-btn" onclick="selectBalanceRate(15, 'special', this)">
+                                    <span class="rate-amount">15৳</span>
+                                    <span class="rate-label">Special</span>
+                                </button>
+                                <button type="button" class="rate-btn" id="balance-custom-btn" onclick="toggleBalanceCustomRate()">
+                                    <span class="rate-amount">Custom</span>
+                                    <span class="rate-label">Set your own</span>
+                                </button>
+                            </div>
+                            <div class="custom-rate-input" id="balance-custom-rate-input">
+                                <div class="custom-input-wrapper">
+                                    <input 
+                                        type="number" 
+                                        class="custom-input" 
+                                        id="balance-custom-rate" 
+                                        placeholder="Enter rate per 1000"
+                                        inputmode="decimal"
+                                    >
+                                    <span style="font-weight: 700; color: var(--text-primary);">৳</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="calculate-btn" onclick="calculateBalance()">
+                        <span>🧮</span> Calculate Cash Out
+                    </button>
+                </div>
+
+                <!-- Result Card -->
+                <div class="result-card" id="balance-result">
+                    <div class="result-header">
+                        <div class="result-title">You Will Receive</div>
+                        <div class="result-amount">
+                            <span id="balance-final-amount">0</span>
+                            <span class="result-currency">৳</span>
+                        </div>
+                    </div>
+                    <div class="breakdown">
+                        <div class="breakdown-row">
+                            <span class="breakdown-label">
+                                <span>💵</span> Your Balance
+                            </span>
+                            <span class="breakdown-value" id="balance-original">0৳</span>
+                        </div>
+                        <div class="breakdown-row">
+                            <span class="breakdown-label">
+                                <span>📊</span> Charge Rate
+                            </span>
+                            <span class="rate-badge" id="balance-rate-badge">14.90৳/1000</span>
+                        </div>
+                        <div class="breakdown-row">
+                            <span class="breakdown-label">
+                                <span>💸</span> Deducted Charge
+                            </span>
+                            <span class="breakdown-value" id="balance-charge-amount">0৳</span>
+                        </div>
+                        <div class="breakdown-row">
+                            <span class="breakdown-label">
+                                <span>✅</span> Final Amount
+                            </span>
+                            <span class="breakdown-value highlight" id="balance-final-breakdown">0৳</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Cards -->
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon">🏧</div>
+                        <div class="info-title">ATM Cash Out</div>
+                        <div class="info-value">14.90৳/1000</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">🏪</div>
+                        <div class="info-title">Agent Cash Out</div>
+                        <div class="info-value">18.50৳/1000</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charge Calculator Page -->
+            <div class="page-section" id="page-charge">
+                <!-- Input Card -->
+                <div class="input-card">
+                    <div class="input-group">
+                        <label class="input-label">
+                            <span>💵</span> Amount You Want
+                        </label>
+                        <div class="input-wrapper">
+                            <span class="currency-symbol">৳</span>
+                            <input 
+                                type="number" 
+                                class="amount-input" 
+                                id="charge-input" 
+                                placeholder="Enter amount"
+                                inputmode="numeric"
+                                pattern="[0-9]*"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">
+                            <span>⚡</span> Select Charge Rate
+                        </label>
+                        <div class="rate-section">
+                            <div class="rate-grid">
+                                <button type="button" class="rate-btn" onclick="selectChargeRate(14.90, 'priyo', this)">
+                                    <span class="rate-amount">14.90৳</span>
+                                    <span class="rate-label">Priyo/ATM</span>
+                                </button>
+                                <button type="button" class="rate-btn" onclick="selectChargeRate(18.50, 'regular', this)">
+                                    <span class="rate-amount">18.50৳</span>
+                                    <span class="rate-label">Regular</span>
+                                </button>
+                                <button type="button" class="rate-btn" onclick="selectChargeRate(15, 'special', this)">
+                                    <span class="rate-amount">15৳</span>
+                                    <span class="rate-label">Special</span>
+                                </button>
+                                <button type="button" class="rate-btn" id="charge-custom-btn" onclick="toggleChargeCustomRate()">
+                                    <span class="rate-amount">Custom</span>
+                                    <span class="rate-label">Set your own</span>
+                                </button>
+                            </div>
+                            <div class="custom-rate-input" id="charge-custom-rate-input">
+                                <div class="custom-input-wrapper">
+                                    <input 
+                                        type="number" 
+                                        class="custom-input" 
+                                        id="charge-custom-rate" 
+                                        placeholder="Enter rate per 1000"
+                                        inputmode="decimal"
+                                    >
+                                    <span style="font-weight: 700; color: var(--text-primary);">৳</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="calculate-btn" onclick="calculateCharge()">
+                        <span>🧮</span> Calculate Total
+                    </button>
+                </div>
+
+                <!-- Result Card -->
+                <div class="result-card" id="charge-result">
+                    <div class="result-header">
+                        <div class="result-title">Total Amount Needed</div>
+                        <div class="result-amount">
+                            <span id="charge-final-amount">0</span>
+                            <span class="result-currency">৳</span>
+                        </div>
+                    </div>
+                    <div class="breakdown">
+                        <div class="breakdown-row">
+                            <span class="breakdown-label">
+                                <span>💵</span> Amount You Want
+                            </span>
+                            <span class="breakdown-value" id="charge-original">0৳</span>
+                        </div>
+                        <div class="breakdown-row">
+                            <span class="breakdown-label">
+                                <span>📊</span> Charge Rate
+                            </span>
+                            <span class="rate-badge" id="charge-rate-badge">14.90৳/1000</span>
+                        </div>
+                        <div class="breakdown-row">
+                            <span class="breakdown-label">
+                                <span>💸</span> Charge Amount
+                            </span>
+                            <span class="breakdown-value" id="charge-charge-amount">0৳</span>
+                        </div>
+                        <div class="breakdown-row">
+                            <span class="breakdown-label">
+                                <span>💰</span> Total Required
+                            </span>
+                            <span class="breakdown-value highlight" id="charge-final-breakdown">0৳</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Cards -->
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon">🏧</div>
+                        <div class="info-title">ATM Cash Out</div>
+                        <div class="info-value">14.90৳/1000</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">🏪</div>
+                        <div class="info-title">Agent Cash Out</div>
+                        <div class="info-value">18.50৳/1000</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-spacer"></div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="developer">Developed by Shohidul Islam Shishir</div>
+            <a href="https://facebook.com/imshishr" target="_blank" class="facebook-link" rel="noopener noreferrer">
+                <svg class="facebook-icon" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+                Connect on Facebook
+            </a>
+        </footer>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Theme Management
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const icon = document.getElementById('theme-icon');
+            icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Page Switching
+        let currentPage = 'balance';
+
+        function switchPage(page) {
+            currentPage = page;
+            
+            // Update toggle buttons
+            document.getElementById('btn-balance').classList.toggle('active', page === 'balance');
+            document.getElementById('btn-charge').classList.toggle('active', page === 'charge');
+            
+            // Show/hide pages
+            document.getElementById('page-balance').classList.toggle('active', page === 'balance');
+            document.getElementById('page-charge').classList.toggle('active', page === 'charge');
+            
+            // Hide results when switching
+            document.getElementById('balance-result').classList.remove('show');
+            document.getElementById('charge-result').classList.remove('show');
+        }
+
+        // Balance Calculator Logic
+        let balanceSelectedRate = null;
+        let balanceCustomRateActive = false;
+        let balanceSelectedBtn = null;
+
+        function selectBalanceRate(rate, type, btnElement) {
+            balanceSelectedRate = rate;
+            balanceCustomRateActive = false;
+            balanceSelectedBtn = btnElement;
+            
+            // Remove active from all rate buttons in balance page
+            const allBtns = document.querySelectorAll('#page-balance .rate-btn');
+            allBtns.forEach(btn => btn.classList.remove('active'));
+            
+            // Hide custom input
+            document.getElementById('balance-custom-rate-input').classList.remove('show');
+            
+            // Add active to clicked button
+            btnElement.classList.add('active');
+        }
+
+        function toggleBalanceCustomRate() {
+            balanceCustomRateActive = !balanceCustomRateActive;
+            
+            if (balanceCustomRateActive) {
+                balanceSelectedRate = null;
+                balanceSelectedBtn = null;
+                
+                // Remove active from all rate buttons
+                const allBtns = document.querySelectorAll('#page-balance .rate-btn');
+                allBtns.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active to custom button
+                document.getElementById('balance-custom-btn').classList.add('active');
+                document.getElementById('balance-custom-rate-input').classList.add('show');
+            } else {
+                document.getElementById('balance-custom-btn').classList.remove('active');
+                document.getElementById('balance-custom-rate-input').classList.remove('show');
+            }
+        }
+
+        function calculateBalance() {
+            const balanceInput = document.getElementById('balance-input');
+            const balance = parseFloat(balanceInput.value);
+            
+            if (!balance || balance <= 0) {
+                showToast('Please enter a valid amount');
+                balanceInput.focus();
+                return;
+            }
+
+            let rate;
+            if (balanceCustomRateActive) {
+                const customRate = parseFloat(document.getElementById('balance-custom-rate').value);
+                if (!customRate || customRate < 0) {
+                    showToast('Please enter a valid custom rate');
+                    return;
+                }
+                rate = customRate;
+            } else if (balanceSelectedRate) {
+                rate = balanceSelectedRate;
+            } else {
+                showToast('Please select a charge rate');
+                return;
+            }
+
+            // Calculate: charge = (balance / 1000) * rate
+            // But this is circular, so we use: charge = (amount * rate) / (1000 + rate) for exact
+            // Actually for balance calculator: if you have X balance, you can withdraw Y where Y + charge = X
+            // charge = (Y / 1000) * rate
+            // X = Y + (Y * rate / 1000) = Y * (1 + rate/1000) = Y * (1000 + rate) / 1000
+            // Y = X * 1000 / (1000 + rate)
+            
+            const finalAmount = (balance * 1000) / (1000 + rate);
+            const chargeAmount = balance - finalAmount;
+
+            // Display results
+            document.getElementById('balance-final-amount').textContent = formatNumber(finalAmount);
+            document.getElementById('balance-original').textContent = formatNumber(balance) + '৳';
+            document.getElementById('balance-charge-amount').textContent = formatNumber(chargeAmount) + '৳';
+            document.getElementById('balance-final-breakdown').textContent = formatNumber(finalAmount) + '৳';
+            
+            const badge = document.getElementById('balance-rate-badge');
+            badge.textContent = rate + '৳/1000';
+            badge.className = balanceCustomRateActive ? 'rate-badge custom' : 'rate-badge';
+            
+            document.getElementById('balance-result').classList.add('show');
+            
+            // Scroll to result
+            setTimeout(() => {
+                document.getElementById('balance-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+
+        // Charge Calculator Logic
+        let chargeSelectedRate = null;
+        let chargeCustomRateActive = false;
+        let chargeSelectedBtn = null;
+
+        function selectChargeRate(rate, type, btnElement) {
+            chargeSelectedRate = rate;
+            chargeCustomRateActive = false;
+            chargeSelectedBtn = btnElement;
+            
+            // Remove active from all rate buttons in charge page
+            const allBtns = document.querySelectorAll('#page-charge .rate-btn');
+            allBtns.forEach(btn => btn.classList.remove('active'));
+            
+            // Hide custom input
+            document.getElementById('charge-custom-rate-input').classList.remove('show');
+            
+            // Add active to clicked button
+            btnElement.classList.add('active');
+        }
+
+        function toggleChargeCustomRate() {
+            chargeCustomRateActive = !chargeCustomRateActive;
+            
+            if (chargeCustomRateActive) {
+                chargeSelectedRate = null;
+                chargeSelectedBtn = null;
+                
+                // Remove active from all rate buttons
+                const allBtns = document.querySelectorAll('#page-charge .rate-btn');
+                allBtns.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active to custom button
+                document.getElementById('charge-custom-btn').classList.add('active');
+                document.getElementById('charge-custom-rate-input').classList.add('show');
+            } else {
+                document.getElementById('charge-custom-btn').classList.remove('active');
+                document.getElementById('charge-custom-rate-input').classList.remove('show');
+            }
+        }
+
+        function calculateCharge() {
+            const amountInput = document.getElementById('charge-input');
+            const amount = parseFloat(amountInput.value);
+            
+            if (!amount || amount <= 0) {
+                showToast('Please enter a valid amount');
+                amountInput.focus();
+                return;
+            }
+
+            let rate;
+            if (chargeCustomRateActive) {
+                const customRate = parseFloat(document.getElementById('charge-custom-rate').value);
+                if (!customRate || customRate < 0) {
+                    showToast('Please enter a valid custom rate');
+                    return;
+                }
+                rate = customRate;
+            } else if (chargeSelectedRate) {
+                rate = chargeSelectedRate;
+            } else {
+                showToast('Please select a charge rate');
+                return;
+            }
+
+            // Calculate: charge = (amount / 1000) * rate
+            // total = amount + charge
+            const chargeAmount = (amount / 1000) * rate;
+            const totalAmount = amount + chargeAmount;
+
+            // Display results
+            document.getElementById('charge-final-amount').textContent = formatNumber(totalAmount);
+            document.getElementById('charge-original').textContent = formatNumber(amount) + '৳';
+            document.getElementById('charge-charge-amount').textContent = formatNumber(chargeAmount) + '৳';
+            document.getElementById('charge-final-breakdown').textContent = formatNumber(totalAmount) + '৳';
+            
+            const badge = document.getElementById('charge-rate-badge');
+            badge.textContent = rate + '৳/1000';
+            badge.className = chargeCustomRateActive ? 'rate-badge custom' : 'rate-badge';
+            
+            document.getElementById('charge-result').classList.add('show');
+            
+            // Scroll to result
+            setTimeout(() => {
+                document.getElementById('charge-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+
+        // Utility Functions
+        function formatNumber(num) {
+            return num.toLocaleString('en-BD', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Initialize
+        initTheme();
+
+        // Enter key support
+        document.getElementById('balance-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') calculateBalance();
+        });
+        document.getElementById('balance-custom-rate').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') calculateBalance();
+        });
+        document.getElementById('charge-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') calculateCharge();
+        });
+        document.getElementById('charge-custom-rate').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') calculateCharge();
+        });
+    </script>
+</body>
+</html>
