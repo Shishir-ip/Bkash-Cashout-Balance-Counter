@@ -10,6 +10,10 @@
     <meta name="description" content="Calculate bKash cash out amounts with charges - Professional calculator for Bangladesh">
     <title>Cashout Counter</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23D12053'/%3E%3Ctext x='50' y='70' font-family='Arial, sans-serif' font-size='60' font-weight='bold' fill='white' text-anchor='middle'%3E৳%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23D12053'/%3E%3Ctext x='50' y='70' font-family='Arial, sans-serif' font-size='60' font-weight='bold' fill='white' text-anchor='middle'%3E৳%3C/text%3E%3C/svg%3E">
+    
     <!-- PWA Manifest -->
     <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQ2FzaG91dCBDb3VudGVyIiwic2hvcnRfbmFtZSI6IkNhc2hvdXQiLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiI0QxMjA1MyIsInRoZW1lX2NvbG9yIjoiI0QxMjA1MyIsImljb25zIjpbeyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5alpYSjBMWFpsY25OcGIyNGlJSGRwWkhSb1BTSXlOVEFpSUdobGFXZG9kRDBpTWpVd0lpQjJhV1YzUW05NFBTSXdJajQ4YzNabklIZHBaSFJvUFNJeU5UQWlJR2hsYVdkb2REMGliVzlpWjJVPklqNDhkSE53SUdadmJuUTlJbU52YlhCc1pYTWlJR2x1Wm05eWJXRjBhR2x1WjBOdmJuUmxiblJwZEhrOUlpSWdlRzFzYm5NNmVHMXNibk05SW1oMGRIQTZMeTkzZDNjdWQzTXViM0puTHpJd01EQXZaR1ZzWVhrdlJHRnVaR1Z5Y3k5bWFXeGxMMkZ3Y0d4cFkyRmliR3h6TDJsdVpHVjRMWFZ6WlhJdFlYQndZV05sYkhNdGJXRjBhWFJoY21sdVl5MXdZWEJ6YVdOaGJHRnlaQzF3Y21GamRHbGhiUzF6YjJaMGQyRnlaWE11WTI5dElqNEtQQzl6ZG1jKyIsInNpemUiOiIxOTJ4MTkyIiwidHlwZSI6ImltYWdlL3N2Zyt4bWwifV19">
     
@@ -94,7 +98,7 @@
         /* Header */
         .header {
             background: var(--primary);
-            padding: 20px 24px;
+            padding: 12px 20px;
             color: white;
             position: relative;
             z-index: 10;
@@ -106,43 +110,43 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
         .app-title {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 800;
             letter-spacing: -0.5px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .app-icon {
-            width: 36px;
-            height: 36px;
+            width: 28px;
+            height: 28px;
             background: white;
-            border-radius: 10px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--primary);
             font-weight: bold;
-            font-size: 20px;
+            font-size: 16px;
         }
 
         .theme-toggle {
             background: rgba(255,255,255,0.2);
             border: none;
             color: white;
-            width: 44px;
-            height: 44px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 18px;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
         }
@@ -153,7 +157,7 @@
         }
 
         .subtitle {
-            font-size: 14px;
+            font-size: 12px;
             opacity: 0.9;
             font-weight: 500;
         }
@@ -163,18 +167,18 @@
             display: flex;
             background: rgba(255,255,255,0.2);
             border-radius: 50px;
-            padding: 4px;
-            margin-top: 16px;
+            padding: 3px;
+            margin-top: 8px;
             backdrop-filter: blur(10px);
         }
 
         .page-toggle-btn {
             flex: 1;
-            padding: 10px 16px;
+            padding: 8px 12px;
             border: none;
             background: transparent;
             color: rgba(255,255,255,0.8);
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
@@ -194,10 +198,10 @@
             flex: 1;
             overflow-y: auto;
             overflow-x: hidden;
-            padding: 24px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
             -webkit-overflow-scrolling: touch;
         }
 
@@ -209,7 +213,7 @@
         .page-section {
             display: none;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
         }
 
         .page-section.active {
@@ -220,14 +224,14 @@
         .input-card {
             background: var(--surface);
             border-radius: var(--radius);
-            padding: 24px;
+            padding: 16px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border);
             flex-shrink: 0;
         }
 
         .input-group {
-            margin-bottom: 24px;
+            margin-bottom: 16px;
         }
 
         .input-group:last-child {
@@ -236,13 +240,13 @@
 
         .input-label {
             display: block;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             color: var(--text-primary);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .input-wrapper {
@@ -251,18 +255,18 @@
 
         .currency-symbol {
             position: absolute;
-            left: 12px;
+            left: 10px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             color: var(--primary);
         }
 
         .amount-input {
             width: 100%;
-            padding: 16px 12px 16px 38px;
-            font-size: 22px;
+            padding: 12px 10px 12px 30px;
+            font-size: 18px;
             font-weight: 700;
             border: 2px solid var(--border);
             border-radius: var(--radius-sm);
@@ -290,8 +294,8 @@
         .rate-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 12px;
+            gap: 8px;
+            margin-bottom: 8px;
         }
 
         /* Default state - not selected */
@@ -300,8 +304,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 4px;
-            padding: 16px;
+            gap: 3px;
+            padding: 12px;
             background: var(--input-bg) !important;
             border: 2px dashed var(--border) !important;
             border-radius: var(--radius-sm);
@@ -311,7 +315,7 @@
             -webkit-appearance: none;
             appearance: none;
             color: inherit;
-            min-height: 80px;
+            min-height: 65px;
         }
 
         /* Selected state - MUST override default */
@@ -332,14 +336,14 @@
         }
 
         .rate-amount {
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 800;
             color: var(--text-primary);
             transition: color 0.3s ease;
         }
 
         .rate-label {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-secondary);
             font-weight: 600;
             transition: color 0.3s ease;
@@ -351,13 +355,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            padding: 14px;
+            gap: 6px;
+            padding: 12px;
             background: var(--input-bg);
             border: 2px dashed var(--border);
             border-radius: var(--radius-sm);
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             color: var(--text-secondary);
             transition: all 0.3s ease;
@@ -413,12 +417,12 @@
         /* Calculate Button */
         .calculate-btn {
             width: 100%;
-            padding: 20px;
+            padding: 14px;
             background: var(--primary);
             color: white;
             border: none;
             border-radius: var(--radius-sm);
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 700;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(209, 32, 83, 0.3);
@@ -426,8 +430,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin-top: 8px;
+            gap: 8px;
+            margin-top: 4px;
             -webkit-appearance: none;
             appearance: none;
         }
@@ -445,7 +449,7 @@
         .result-card {
             background: var(--surface);
             border-radius: var(--radius);
-            padding: 24px;
+            padding: 16px;
             box-shadow: var(--shadow-lg);
             border: 2px solid var(--primary);
             display: none;
@@ -464,43 +468,43 @@
 
         .result-header {
             text-align: center;
-            margin-bottom: 20px;
-            padding-bottom: 16px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
             border-bottom: 2px dashed var(--border);
         }
 
         .result-title {
-            font-size: 14px;
+            font-size: 12px;
             color: var(--text-secondary);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .result-amount {
-            font-size: 42px;
+            font-size: 32px;
             font-weight: 800;
             color: var(--primary);
             line-height: 1;
         }
 
         .result-currency {
-            font-size: 20px;
+            font-size: 18px;
             color: var(--text-secondary);
             font-weight: 600;
         }
 
         .breakdown {
             display: grid;
-            gap: 12px;
+            gap: 10px;
         }
 
         .breakdown-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
+            padding: 10px 0;
             border-bottom: 1px solid var(--border);
         }
 
@@ -510,7 +514,7 @@
         }
 
         .breakdown-label {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-secondary);
             font-weight: 500;
             display: flex;
@@ -519,23 +523,23 @@
         }
 
         .breakdown-value {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--text-primary);
         }
 
         .breakdown-value.highlight {
             color: var(--primary);
-            font-size: 18px;
+            font-size: 16px;
         }
 
         .rate-badge {
             display: inline-block;
-            padding: 4px 10px;
+            padding: 3px 8px;
             background: rgba(209, 32, 83, 0.1);
             color: var(--primary);
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
         }
 
@@ -548,46 +552,46 @@
         .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 8px;
+            gap: 10px;
+            margin-top: 6px;
             flex-shrink: 0;
         }
 
         .info-card {
             background: var(--surface);
             border-radius: var(--radius-sm);
-            padding: 16px;
+            padding: 12px;
             text-align: center;
             border: 1px solid var(--border);
         }
 
         .info-icon {
-            font-size: 24px;
-            margin-bottom: 8px;
+            font-size: 20px;
+            margin-bottom: 6px;
         }
 
         .info-title {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-secondary);
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .info-value {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--text-primary);
         }
 
         /* Scrollable spacer to push footer down */
         .scroll-spacer {
-            height: 40px;
+            height: 20px;
             flex-shrink: 0;
         }
 
         /* Footer - Mini at bottom */
         .footer {
-            padding: 24px 24px 24px;
+            padding: 16px 20px 20px;
             text-align: center;
             background: var(--surface);
             border-top: 1px solid var(--border);
@@ -596,9 +600,9 @@
         }
 
         .developer {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-secondary);
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             opacity: 0.8;
         }
 
@@ -609,7 +613,7 @@
             color: var(--facebook-blue);
             text-decoration: none;
             font-weight: 600;
-            font-size: 12px;
+            font-size: 11px;
             padding: 4px 8px;
             border-radius: 12px;
             background: rgba(24, 119, 242, 0.1);
@@ -653,13 +657,13 @@
         /* Responsive */
         @media (max-width: 380px) {
             .app-title {
-                font-size: 24px;
+                font-size: 18px;
             }
             .result-amount {
-                font-size: 36px;
+                font-size: 28px;
             }
             .rate-amount {
-                font-size: 18px;
+                font-size: 14px;
             }
         }
 
@@ -702,12 +706,12 @@
                     <span id="theme-icon">🌙</span>
                 </button>
             </div>
-            <div class="subtitle">Calculate bKash Cash Out with Charges</div>
+            <div class="subtitle">Calculate bKash Cash Out Charges</div>
             
             <!-- Page Toggle -->
             <div class="page-toggle">
-                <button class="page-toggle-btn active" id="btn-balance" onclick="switchPage('balance')">Balance Calculator</button>
-                <button class="page-toggle-btn" id="btn-charge" onclick="switchPage('charge')">Charge Calculator</button>
+                <button class="page-toggle-btn active" id="btn-balance" onclick="switchPage('balance')">Balance</button>
+                <button class="page-toggle-btn" id="btn-charge" onclick="switchPage('charge')">Charge</button>
             </div>
         </header>
 
@@ -764,7 +768,7 @@
                     </div>
 
                     <button class="calculate-btn" onclick="calculateBalance()">
-                        <span>🧮</span> Calculate Cash Out
+                        <span>🧮</span> Calculate
                     </button>
                 </div>
 
@@ -871,7 +875,7 @@
                     </div>
 
                     <button class="calculate-btn" onclick="calculateCharge()">
-                        <span>🧮</span> Calculate Total
+                        <span>🧮</span> Calculate
                     </button>
                 </div>
 
