@@ -376,6 +376,55 @@
             box-shadow: 0 4px 15px rgba(209, 32, 83, 0.4);
         }
 
+        /* Custom rate button with actions */
+        .custom-rate-btn {
+            position: relative;
+        }
+
+        .rate-actions {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            display: flex;
+            gap: 2px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .custom-rate-btn:hover .rate-actions,
+        .custom-rate-btn.active .rate-actions {
+            opacity: 1;
+        }
+
+        .rate-action-btn {
+            width: 20px;
+            height: 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            transition: all 0.2s ease;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .rate-action-btn.edit {
+            background: rgba(255, 193, 7, 0.9);
+            color: #000;
+        }
+
+        .rate-action-btn.delete {
+            background: rgba(220, 53, 69, 0.9);
+            color: white;
+        }
+
+        .rate-action-btn:active {
+            transform: scale(0.9);
+        }
+
         .custom-rate-input {
             display: none;
             margin-top: 12px;
@@ -936,6 +985,14 @@
                 </svg>
                 Connect on Facebook
             </a>
+            <div style="margin-top: 8px;">
+                <a href="https://github.com/Shishir-ip" target="_blank" class="facebook-link" rel="noopener noreferrer" style="background: rgba(0,0,0,0.05); color: #333;">
+                    <svg class="facebook-icon" viewBox="0 0 24 24" style="fill: currentColor;">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    GitHub Profile
+                </a>
+            </div>
         </footer>
     </div>
 
@@ -1010,13 +1067,22 @@
         }
 
         function openAddRateModal(page) {
-            const name = prompt('Enter rate name (e.g., My Custom Rate):');
-            if (!name || name.trim() === '') return;
+            const name = prompt('Enter rate name (e.g., My Custom Rate):', 'Custom rate');
+            if (name === null) return; // User cancelled
             
-            const rateStr = prompt('Enter rate per 1000 (e.g., 13.95):');
-            if (!rateStr) return;
+            const trimmedName = name.trim();
+            const finalName = trimmedName === '' ? 'Custom rate' : trimmedName;
             
-            const rate = parseFloat(rateStr);
+            const rateStr = prompt('Enter rate per 1000 (e.g., 13.95):', '');
+            if (rateStr === null) return; // User cancelled
+            
+            const trimmedRateStr = rateStr.trim();
+            if (trimmedRateStr === '') {
+                showToast('Please enter a valid rate');
+                return;
+            }
+            
+            const rate = parseFloat(trimmedRateStr);
             if (isNaN(rate) || rate < 0) {
                 showToast('Please enter a valid rate');
                 return;
@@ -1025,7 +1091,7 @@
             const customRates = loadCustomRates(page);
             const newRate = {
                 id: Date.now(),
-                name: name.trim(),
+                name: finalName,
                 rate: rate
             };
             customRates.push(newRate);
@@ -1033,6 +1099,45 @@
             
             renderCustomRates(page);
             showToast('Rate added successfully!');
+        }
+
+        function editCustomRate(page, id) {
+            const customRates = loadCustomRates(page);
+            const rateIndex = customRates.findIndex(r => r.id === id);
+            if (rateIndex === -1) return;
+            
+            const currentRate = customRates[rateIndex];
+            
+            const name = prompt('Edit rate name:', currentRate.name);
+            if (name === null) return; // User cancelled
+            
+            const trimmedName = name.trim();
+            const finalName = trimmedName === '' ? 'Custom rate' : trimmedName;
+            
+            const rateStr = prompt('Edit rate per 1000:', currentRate.rate.toString());
+            if (rateStr === null) return; // User cancelled
+            
+            const trimmedRateStr = rateStr.trim();
+            if (trimmedRateStr === '') {
+                showToast('Please enter a valid rate');
+                return;
+            }
+            
+            const rate = parseFloat(trimmedRateStr);
+            if (isNaN(rate) || rate < 0) {
+                showToast('Please enter a valid rate');
+                return;
+            }
+            
+            customRates[rateIndex] = {
+                id: id,
+                name: finalName,
+                rate: rate
+            };
+            
+            saveCustomRates(page, customRates);
+            renderCustomRates(page);
+            showToast('Rate updated successfully!');
         }
 
         function renderCustomRates(page) {
@@ -1045,12 +1150,15 @@
             const existingCustom = grid.querySelectorAll('.custom-rate-btn');
             existingCustom.forEach(btn => btn.remove());
             
-            // Add custom rate buttons
+            // Add custom rate buttons with edit/delete actions
             customRates.forEach(customRate => {
                 const btn = document.createElement('button');
                 btn.type = 'button';
                 btn.className = 'rate-btn custom-rate-btn';
-                btn.onclick = function() {
+                btn.onclick = function(e) {
+                    // Don't select rate if clicking on action buttons
+                    if (e.target.closest('.rate-action-btn')) return;
+                    
                     if (page === 'balance') {
                         selectBalanceRate(customRate.rate, customRate.id, this);
                     } else {
@@ -1060,6 +1168,10 @@
                 btn.innerHTML = `
                     <span class="rate-amount">${customRate.rate}৳</span>
                     <span class="rate-label">${customRate.name}</span>
+                    <div class="rate-actions">
+                        <button type="button" class="rate-action-btn edit" onclick="editCustomRate('${page}', ${customRate.id})" title="Edit">✏️</button>
+                        <button type="button" class="rate-action-btn delete" onclick="removeCustomRate('${page}', ${customRate.id})" title="Delete">🗑️</button>
+                    </div>
                 `;
                 grid.appendChild(btn);
             });
