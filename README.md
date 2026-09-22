@@ -14,7 +14,7 @@ A lightweight, mobile-first web calculator for computing bKash cash out charges 
 
 **[Try it now →](https://bkash-cashout-counter.vercel.app/)**
 
-![Cashout Counter Preview](https://via.placeholder.com/300x600/D12053/ffffff?text=Cashout+Counter+Preview)
+![Cashout Counter Preview](https://i.ibb.co.com/0jkLczWV/Screenshot-2026-09-23-022420.png)
 
 ---
 
