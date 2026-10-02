@@ -3,16 +3,16 @@
 A lightweight, mobile-first web calculator for computing bKash cash out charges in Bangladesh with customizable rates and dual calculation modes.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub stars](https://img.shields.io/github/stars/Shishir-ip/bkash-cashout-counter?style=flat&logo=github)](https://github.com/Shishir-ip/bkash-cashout-counter/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/Shishir-ip/bkash-cashout-counter?style=flat&logo=github)](https://github.com/Shishir-ip/bkash-cashout-counter/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/Shishir-ip/bkash-cashout-counter)](https://github.com/Shishir-ip/bkash-cashout-counter/issues)
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)](https://bkash-cashout-counter.vercel.app/)
+[![GitHub stars](https://img.shields.io/github/stars/Shishir-ip/Bkash-Cashout-Balance-Counter?style=flat&logo=github)](https://github.com/Shishir-ip/Bkash-Cashout-Balance-Counter/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Shishir-ip/Bkash-Cashout-Balance-Counter?style=flat&logo=github)](https://github.com/Shishir-ip/Bkash-Cashout-Balance-Counter/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/Shishir-ip/Bkash-Cashout-Balance-Counter)](https://github.com/Shishir-ip/Bkash-Cashout-Balance-Counter/issues)
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)](https://Bkash-Cashout-Balance-Counter.vercel.app/)
 
 ---
 
 ## 📱 Live Demo
 
-**[Try it now →](https://bkash-cashout-counter.vercel.app/)**
+**[Try it now →](https://Bkash-Cashout-Balance-Counter.vercel.app/)**
 
 ![Cashout Counter Preview](https://i.ibb.co.com/0jkLczWV/Screenshot-2026-09-23-022420.png)
 
@@ -115,19 +115,19 @@ The entire application resides in a single `index.html` file containing:
 ### Option 1: Clone Repository
 
 ```bash
-git clone https://github.com/Shishir-ip/bkash-cashout-counter.git
-cd bkash-cashout-counter
+git clone https://github.com/Shishir-ip/Bkash-Cashout-Balance-Counter.git
+cd Bkash-Cashout-Balance-Counter
 ```
 
 Then open `index.html` in your browser.
 
 ### Option 2: Download Directly
 
-Download [`index.html`](https://raw.githubusercontent.com/Shishir-ip/bkash-cashout-counter/main/index.html) and open it in any modern browser.
+Download [`index.html`](https://raw.githubusercontent.com/Shishir-ip/Bkash-Cashout-Balance-Counter/main/index.html) and open it in any modern browser.
 
 ### Option 3: Use Live Demo
 
-Visit **[https://bkash-cashout-counter.vercel.app/](https://bkash-cashout-counter.vercel.app/)** — no installation needed.
+Visit **[https://Bkash-Cashout-Balance-Counter.vercel.app/](https://Bkash-Cashout-Balance-Counter.vercel.app/)** — no installation needed.
 
 ---
 
@@ -362,8 +362,8 @@ Contributions are welcome! Follow these steps:
 
 ```bash
 # Clone repository
-git clone https://github.com/Shishir-ip/bkash-cashout-counter.git
-cd bkash-cashout-counter
+git clone https://github.com/Shishir-ip/Bkash-Cashout-Balance-Counter.git
+cd Bkash-Cashout-Balance-Counter
 
 # Start local server (optional)
 python -m http.server 8000
@@ -473,7 +473,7 @@ If you find this project useful:
 
 - ⭐ **Star** this repository on GitHub
 - 🔗 **Share** with others who use bKash
-- 🐛 **Report** bugs via [GitHub Issues](https://github.com/Shishir-ip/bkash-cashout-counter/issues)
+- 🐛 **Report** bugs via [GitHub Issues](https://github.com/Shishir-ip/Bkash-Cashout-Balance-Counter/issues)
 - 💡 **Suggest** features or improvements
 
 ---
@@ -488,6 +488,6 @@ bKash calculator, cash out charge calculator, Bangladesh mobile banking, bKash r
 
 **Made with ❤️ for Bangladesh**
 
-[Report Issue](https://github.com/Shishir-ip/bkash-cashout-counter/issues) • [Request Feature](https://github.com/Shishir-ip/bkash-cashout-counter/issues) • [View Demo](https://bkash-cashout-counter.vercel.app/)
+[Report Issue](https://github.com/Shishir-ip/Bkash-Cashout-Balance-Counter/issues) • [Request Feature](https://github.com/Shishir-ip/Bkash-Cashout-Balance-Counter/issues) • [View Demo](https://Bkash-Cashout-Balance-Counter.vercel.app/)
 
 </div>
